@@ -1,5 +1,9 @@
 ---
 
+###
+### Without boto profile
+###
+
 - hosts: all
   connection: local
   vars:
@@ -13,6 +17,30 @@
   connection: local
   vars:
     aws_account_match_allowed_accounts: [01234, 12345, 23456]
+  roles:
+    - ansible-role-aws-account-match
+  tags:
+    - aws-account-match
+
+###
+### With boto profile
+###
+
+- hosts: all
+  connection: local
+  vars:
+    aws_account_match_allowed_account: 12345
+    aws_account_match_profile: playground
+  roles:
+    - ansible-role-aws-account-match
+  tags:
+    - aws-account-match
+
+- hosts: all
+  connection: local
+  vars:
+    aws_account_match_allowed_accounts: [01234, 12345, 23456]
+    aws_account_match_profile: playground
   roles:
     - ansible-role-aws-account-match
   tags:

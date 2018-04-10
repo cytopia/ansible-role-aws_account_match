@@ -27,7 +27,7 @@
   register: _aws_account_match_number
   when:
     - aws_account_match_profile is defined
-    - aws_account_match_profile | length > 0
+    - aws_account_match_profile
 
 - name: validate current login
   assert:
