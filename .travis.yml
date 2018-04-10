@@ -1,0 +1,78 @@
+---
+
+language: python
+python: "2.7"
+
+
+###
+### Use fast infrastructure
+###
+sudo: false
+
+
+###
+### What travis packages are required
+###
+addons:
+  apt:
+    packages:
+      - python-pip
+
+
+###
+### Build stage variables
+###
+env:
+  matrix:
+    - check=ansible-galaxy
+    - check=syntax-check
+    - check=template-generation
+
+
+###
+### Install requirements
+###
+install:
+  # Install packages
+  - pip install ansible
+  - pip install yamllint
+  # Check versions
+  - ansible --version
+  - yamllint --version
+
+
+###
+### Setup
+###
+before_script:
+  # Create ansible.cfg with correct roles_path
+  - printf '[defaults]\nroles_path=../' > ansible.cfg
+
+  # Create fake `aws` cli
+  - printf "#!/bin/sh\necho '12345'\n" | sudo tee /usr/local/bin/aws
+  - sudo chmod +x /usr/local/bin/aws
+
+
+###
+### Script with Build stages
+###
+script:
+  - if [ "${check}" = "ansible-galaxy" ]; then
+        ansible-galaxy install cytopia.aws-account-match;
+    elif [ "${check}" = "syntax-check" ]; then
+        ansible-playbook tests/play_ok.yml -i tests/inventory --syntax-check;
+        ansible-playbook tests/play_fail.yml -i tests/inventory --syntax-check;
+        yamllint -d "{extends: relaxed, rules: {line-length: {max: 160}}}" .
+    elif [ "${check}" = "template-generation" ]; then
+        ansible-playbook tests/play_ok.yml -i tests/inventory -vv;
+        if ansible-playbook tests/play_fail.yml -i tests/inventory -vv; then
+            false;
+        fi
+    fi
+
+
+###
+### Notify Ansible Galaxy to pull changes
+###
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

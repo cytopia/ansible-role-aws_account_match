@@ -1,0 +1,10 @@
+---
+
+# Single account that must be logged in to
+aws_account_match_allowed_account:
+
+# Match against at least on the the accounts to be logged in to
+aws_account_match_allowed_accounts: []
+
+# Optionally specify a boto profile used to be logged in with
+aws_account_match_profile:

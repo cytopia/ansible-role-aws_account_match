@@ -1,13 +1,15 @@
 # Ansible AWS account match
 
 
-The `aws-account-match` role lets you define one or more AWS accounts and ensures your playbook
-is only provisioned to those accounts.
+The `aws-account-match` role let's you define one or more AWS accounts and ensures your playbook
+is only provisioned against those accounts.
 
 Include this role at the very top of any AWS relatated playbooks and it will act as a safeguard
 by immediately aborting the whole play in case you are logged in with the wrong AWS account.
 
 Boto profiles and environment variables are both supported.
+
+[![Build Status](https://travis-ci.org/cytopia/ansible-role-aws-account-match.svg?branch=master)](https://travis-ci.org/cytopia/ansible-role-aws-account-match)
 
 ---
 

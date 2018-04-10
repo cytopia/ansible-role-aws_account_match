@@ -1,0 +1,34 @@
+---
+
+galaxy_info:
+  author: cytopia
+  company: cytopia
+  license: MIT
+  description: Ansible role that let's you define one or more AWS accounts and ensures your playbook is only provisioned against those accounts.
+  min_ansible_version: 2.4
+  platforms:
+    - name: Amazon
+      versions:
+        - all
+    - name: EL
+      versions:
+        - 5
+        - 6
+    - name: Fedora
+      versions:
+        - 16
+        - 17
+        - 18
+    - name: Ubuntu
+      versions:
+        - precise
+        - quantal
+        - raring
+        - saucy
+  galaxy_tags:
+    - AWS
+    - aws
+    - amazon
+    - cloud
+    - cfn
+dependencies: []
