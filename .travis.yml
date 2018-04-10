@@ -63,7 +63,6 @@ script:
     elif [ "${check}" = "syntax-check" ]; then
         ansible-playbook tests/play_ok.yml -i tests/inventory --syntax-check;
         ansible-playbook tests/play_fail.yml -i tests/inventory --syntax-check;
-        yamllint -d "{extends: relaxed, rules: {line-length: {max: 160}}}" .
     elif [ "${check}" = "template-generation" ]; then
         ansible-playbook tests/play_ok.yml -i tests/inventory -vv;
         if ansible-playbook tests/play_fail.yml -i tests/inventory -vv; then
