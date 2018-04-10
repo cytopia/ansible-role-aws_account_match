@@ -51,6 +51,7 @@ before_script:
   # Create fake `aws` cli
   - printf "#!/bin/sh\necho '12345'\n" | sudo tee /usr/local/bin/aws
   - sudo chmod +x /usr/local/bin/aws
+  - aws
 
 
 ###

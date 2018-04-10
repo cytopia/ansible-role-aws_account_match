@@ -10,9 +10,31 @@ by immediately aborting the whole play in case you are logged in with the wrong 
 Boto profiles and environment variables are both supported.
 
 [![Build Status](https://travis-ci.org/cytopia/ansible-role-aws-account-match.svg?branch=master)](https://travis-ci.org/cytopia/ansible-role-aws-account-match)
+[![Ansible Galaxy](https://img.shields.io/ansible/role/d/24913.svg)](https://galaxy.ansible.com/cytopia/aws-account-match/)
+[![Release](https://img.shields.io/github/release/cytopia/ansible-role-aws-account-match.svg)](https://github.com/cytopia/ansible-role-aws-account-match/releases)
 
 ---
 
+
+## Installation
+
+Ensure [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) is installed locally:
+
+```bash
+$ pip install awscli
+```
+
+Either use [Ansible Galaxy](https://galaxy.ansible.com/cytopia/aws-account-match) to install the role:
+
+```bash
+$ ansible-galaxy install cytopia.aws-account-match
+```
+
+Or git clone it into your roles directory
+
+```bash
+$ git clone https://github.com/cytopia/ansible-role-aws-account-match /path/to/ansible/roles
+```
 
 ## Variables
 
@@ -31,6 +53,7 @@ Boto profiles and environment variables are both supported.
 ## Requirements
 
 * [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) (`pip install awscli`)
+* [Ansible 2.4](https://github.com/ansible/ansible) 
 
 
 ## Usage
