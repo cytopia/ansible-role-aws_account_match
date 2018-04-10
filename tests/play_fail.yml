@@ -5,7 +5,7 @@
   vars:
     aws_account_match_allowed_account: 12345
   roles:
-    - aws-account-match
+    - ansible-role-aws-account-match
   tags:
     - aws-account-match
 
@@ -14,6 +14,6 @@
   vars:
     aws_account_match_allowed_accounts: [012345, 123456, 234567]
   roles:
-    - aws-account-match
+    - ansible-role-aws-account-match
   tags:
     - aws-account-match
