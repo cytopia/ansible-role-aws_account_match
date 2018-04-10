@@ -7,33 +7,20 @@
       - not (aws_account_match_allowed_account and aws_account_match_allowed_accounts)
     msg: Either only aws_account_match_allowed_account or only aws_account_match_allowed_accounts must be defined
 
-- name: retrieve currently logged in account number
-  shell: aws sts get-caller-identity --output text --query 'Account'
-  args:
-    executable: /bin/sh
-  delegate_to: localhost
-  check_mode: False
-  changed_when: False
-  register: _aws_account_match_number
-  when: not aws_account_match_profile
-
 - name: retrieve currently boto-logged in account number
-  shell: "aws sts --profile {{ aws_account_match_profile }} get-caller-identity --output text --query 'Account'"
+  shell: "aws sts {% if aws_account_match_profile %}--profile {{ aws_account_match_profile }}{% endif %} get-caller-identity --output text --query 'Account'"
   args:
     executable: /bin/sh
   delegate_to: localhost
   check_mode: False
   changed_when: False
   register: _aws_account_match_number
-  when:
-    - aws_account_match_profile is defined
-    - aws_account_match_profile | length > 0
 
 - name: validate current login
   assert:
     that:
+      - _aws_account_match_number is defined
       - _aws_account_match_number.stdout is defined
-      - _aws_account_match_number.stdout | length > 0
     msg: Could not retrieve account number. Make sure you are logged in to AWS.
 
 - name: ensure current account matched single allowed account
