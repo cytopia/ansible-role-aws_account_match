@@ -84,7 +84,7 @@ aws_account_match_allowed_accounts:
 aws_account_match_profile: "{{ profile | default('') }}"
 ```
 
-#### Run
+##### Run
 
 The `testing` boto profile has a login for account `555444333222`, which is not part of the allowed
 accounts. In case this is run, it will immediately abort the whole play:
@@ -103,3 +103,11 @@ fatal: [infrastructure]: FAILED! => {
 }
 ```
 
+##### Run without aws-account-match
+
+You can also skip the whole role in case you need to test without account validation
+via its pre-defined tags:
+
+```bash
+$ ansible-playbook playbook.yml -e profile=testing --skip-tags=aws_account_match
+```
