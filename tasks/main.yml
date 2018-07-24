@@ -6,7 +6,11 @@
       - aws_account_match_allowed_account or aws_account_match_allowed_accounts
       - not (aws_account_match_allowed_account and aws_account_match_allowed_accounts)
     msg: Either only aws_account_match_allowed_account or only aws_account_match_allowed_accounts must be defined
-  tags: aws_account_match
+  tags:
+    # My own tag
+    - aws_account_match
+    # Special tag that will make it run regardless of what tag has been specified
+    - always
 
 - name: retrieve currently boto-logged in account number
   shell: "aws sts {% if aws_account_match_profile %}--profile {{ aws_account_match_profile }}{% endif %} get-caller-identity --output text --query 'Account'"
@@ -16,7 +20,11 @@
   check_mode: False
   changed_when: False
   register: _aws_account_match_number
-  tags: aws_account_match
+  tags:
+    # My own tag
+    - aws_account_match
+    # Special tag that will make it run regardless of what tag has been specified
+    - always
 
 - name: validate current login
   assert:
@@ -24,7 +32,11 @@
       - _aws_account_match_number is defined
       - _aws_account_match_number.stdout is defined
     msg: Could not retrieve account number. Make sure you are logged in to AWS.
-  tags: aws_account_match
+  tags:
+    # My own tag
+    - aws_account_match
+    # Special tag that will make it run regardless of what tag has been specified
+    - always
 
 - name: ensure current account matched single allowed account
   assert:
@@ -34,7 +46,11 @@
   when:
     - aws_account_match_allowed_account is defined
     - aws_account_match_allowed_account
-  tags: aws_account_match
+  tags:
+    # My own tag
+    - aws_account_match
+    # Special tag that will make it run regardless of what tag has been specified
+    - always
 
 - name: ensure current account matched any of all allowed accounts
   assert:
@@ -44,4 +60,8 @@
   when:
     - aws_account_match_allowed_accounts is defined
     - aws_account_match_allowed_accounts
-  tags: aws_account_match
+  tags:
+    # My own tag
+    - aws_account_match
+    # Special tag that will make it run regardless of what tag has been specified
+    - always
