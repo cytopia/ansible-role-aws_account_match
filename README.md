@@ -10,7 +10,7 @@ by immediately aborting the whole play in case you are logged in with the wrong 
 Boto profiles and environment variables are both supported.
 
 [![Build Status](https://travis-ci.org/cytopia/ansible-role-aws_account_match.svg?branch=master)](https://travis-ci.org/cytopia/ansible-role-aws_account_match)
-[![Ansible Galaxy](https://img.shields.io/ansible/role/d/24913.svg)](https://galaxy.ansible.com/cytopia/aws_account_match/)
+[![Ansible Galaxy](https://img.shields.io/ansible/role/d/40181.svg)](https://galaxy.ansible.com/cytopia/aws_account_match/)
 [![Release](https://img.shields.io/github/release/cytopia/ansible-role-aws_account_match.svg)](https://github.com/cytopia/ansible-role-aws_account_match/releases)
 
 ---
