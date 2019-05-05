@@ -59,7 +59,7 @@ before_script:
 ###
 script:
   - if [ "${check}" = "ansible-galaxy" ]; then
-        ansible-galaxy install cytopia.aws-account-match;
+        ansible-galaxy install cytopia.aws_account_match;
     elif [ "${check}" = "syntax-check" ]; then
         ansible-playbook tests/play_ok.yml -i tests/inventory --syntax-check;
         ansible-playbook tests/play_fail.yml -i tests/inventory --syntax-check;

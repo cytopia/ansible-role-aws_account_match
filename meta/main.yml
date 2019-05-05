@@ -5,7 +5,7 @@ galaxy_info:
   company: cytopia
   license: MIT
   description: Ansible role that let's you define one or more AWS accounts and ensures your playbook is only provisioned against those accounts.
-  role_name: aws-account-match
+  role_name: aws_account_match
   min_ansible_version: 2.4
   platforms:
     - name: EL
